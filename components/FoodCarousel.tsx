@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { MoveHorizontal } from "lucide-react";
+import { FileText, MoveHorizontal } from "lucide-react";
 import { motion, useAnimationFrame, useMotionValue } from "motion/react";
 import { useRef } from "react";
 import { useLanguage } from "./LanguageProvider";
@@ -28,12 +28,14 @@ export function FoodCarousel() {
       <div className="mx-auto max-w-[1440px] px-5 md:px-10 lg:px-16">
         <Reveal className="grid gap-7 md:grid-cols-[1fr_1.25fr] md:items-end">
           <div>
-            <p className="section-label">{t.food.eyebrow}</p>
-            <h2 className="section-title mt-4 max-w-2xl">{t.food.title}</h2>
+            <h2 className="section-title max-w-2xl">{t.food.title}</h2>
           </div>
           <div className="md:pb-2">
             <p className="max-w-xl text-base leading-relaxed text-ink/65 md:ml-auto md:text-lg">{t.food.text}</p>
-            <p className="mt-5 flex items-center gap-2 text-xs font-bold tracking-[.16em] text-ink/50 uppercase md:justify-end"><MoveHorizontal size={16} />{t.food.drag}</p>
+            <div className="mt-6 flex flex-wrap items-center gap-4 md:justify-end">
+              <a href="/House-Noodles-Menu.pdf" target="_blank" rel="noreferrer" className="flex min-w-[184px] items-center justify-center gap-2 rounded-full bg-red px-5 py-3.5 text-xs font-bold tracking-[.1em] text-white uppercase transition-transform hover:scale-[1.03]"><FileText size={16} />{t.food.pdf}</a>
+              <p className="flex items-center gap-2 text-xs font-bold tracking-[.16em] text-ink/50 uppercase"><MoveHorizontal size={16} />{t.food.drag}</p>
+            </div>
           </div>
         </Reveal>
       </div>

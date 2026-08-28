@@ -7,8 +7,11 @@ import { Navbar } from "@/components/Navbar";
 import { ReserveCard } from "@/components/ReserveCard";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { SpaceGallery } from "@/components/SpaceGallery";
+import { getRestaurantInfo } from "@/lib/restaurantInfo";
 
-export default function Home() {
+export default async function Home() {
+  const restaurantInfo = await getRestaurantInfo();
+
   return (
     <LanguageProvider>
       <ScrollProgress />
@@ -20,7 +23,7 @@ export default function Home() {
         <Contact />
         <ReserveCard />
       </main>
-      <Footer />
+      <Footer privacyPolicyUrl={restaurantInfo.privacyPolicyUrl} termsAndConditionsUrl={restaurantInfo.termsAndConditionsUrl} />
     </LanguageProvider>
   );
 }
