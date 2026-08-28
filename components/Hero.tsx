@@ -19,7 +19,7 @@ export function Hero() {
 
   return (
     <section id="top" className="grain relative min-h-[760px] overflow-hidden bg-ink text-white md:min-h-[820px]">
-      <picture>
+      <picture className="absolute inset-0 block">
         <source media="(max-width: 767px)" srcSet="/images/hero-mobile.webp" />
         <Image src="/images/space-1.webp" alt="The warm wood interior of House Noodles in Lisbon" fill priority sizes="100vw" className="object-cover" />
       </picture>
