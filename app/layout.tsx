@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
+if (!siteUrl) {
+  throw new Error("NEXT_PUBLIC_SITE_URL must be set to the site's absolute public URL.");
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://house-noodles-lisboa.zhan-liu128.chatgpt.site"),
+  metadataBase: new URL(siteUrl),
   title: "House Noodles 见一面 | Noodles & Chinese Food in Lisbon",
   description:
     "Hand-pulled noodles, ramen and Chinese comfort food in Entrecampos, Lisbon.",
