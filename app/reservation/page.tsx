@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { LanguageProvider } from "@/components/LanguageProvider";
+import { Navbar } from "@/components/Navbar";
 import { reservationWidgetUrl } from "@/lib/restaurantInfo";
 
 export const metadata: Metadata = {
@@ -10,13 +12,16 @@ const restaurantInfo = { reservationWidgetUrl };
 
 export default function ReservationPage() {
   return (
-    <main className="h-svh bg-white">
-      <iframe
-        className="block h-full w-full border-0"
-        loading="eager"
-        src={restaurantInfo.reservationWidgetUrl}
-        title="House Noodles Reservation Form"
-      />
-    </main>
+    <LanguageProvider>
+      <Navbar />
+      <main className="h-svh bg-white pt-[72px]">
+        <iframe
+          className="block h-full w-full border-0"
+          loading="eager"
+          src={restaurantInfo.reservationWidgetUrl}
+          title="House Noodles Reservation Form"
+        />
+      </main>
+    </LanguageProvider>
   );
 }

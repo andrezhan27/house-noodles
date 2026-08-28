@@ -1,21 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
-import { motion, useMotionValue, useSpring } from "motion/react";
-import { MouseEvent } from "react";
+import Link from "next/link";
+import { ArrowDown } from "lucide-react";
+import { motion } from "motion/react";
 import { useLanguage } from "./LanguageProvider";
 
 export function Hero() {
   const { t } = useLanguage();
-  const x = useSpring(useMotionValue(0), { stiffness: 180, damping: 14 });
-  const y = useSpring(useMotionValue(0), { stiffness: 180, damping: 14 });
-
-  function move(event: MouseEvent<HTMLAnchorElement>) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    x.set((event.clientX - rect.left - rect.width / 2) * 0.18);
-    y.set((event.clientY - rect.top - rect.height / 2) * 0.18);
-  }
 
   return (
     <section id="top" className="grain relative min-h-[760px] overflow-hidden bg-ink text-white md:min-h-[820px]">
@@ -26,13 +18,13 @@ export function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,8,7,.82)_0%,rgba(8,8,7,.3)_58%,rgba(8,8,7,.08)_100%)] max-md:bg-[linear-gradient(180deg,rgba(8,8,7,.46)_0%,rgba(8,8,7,.15)_38%,rgba(8,8,7,.78)_100%)]" />
       <div className="relative z-10 mx-auto flex min-h-[760px] max-w-[1440px] items-end px-5 pb-20 pt-32 md:min-h-[820px] md:items-center md:px-10 md:pb-8 lg:px-16">
         <motion.div initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .85, ease: [0.22, 1, 0.36, 1] }} className="max-w-3xl">
-          <h1 className="display max-w-3xl text-[clamp(3.15rem,6.5vw,6.6rem)] leading-[.9] tracking-[-.05em] text-balance">{t.hero.title}</h1>
+          <h1 className="max-w-3xl text-[clamp(3.15rem,6.5vw,6.6rem)] leading-[.9] font-semibold tracking-[-.05em] text-balance">{t.hero.title}</h1>
           <p className="mt-7 max-w-xl text-base leading-relaxed text-white/78 md:text-lg">{t.hero.text}</p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <motion.a href="/reservation" onMouseMove={move} onMouseLeave={() => { x.set(0); y.set(0); }} style={{ x, y }} className="group flex min-w-[188px] items-center justify-center gap-3 rounded-full bg-red px-6 py-4 text-sm font-bold tracking-[.08em] uppercase shadow-[0_10px_40px_rgba(173,47,30,.35)]">
-              {t.hero.reserve}<ArrowUpRight size={17} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </motion.a>
-            <a href="/House-Noodles-Menu.pdf" className="flex min-w-[188px] items-center justify-center rounded-full border border-white/35 bg-white/5 px-6 py-4 text-sm font-bold tracking-[.08em] uppercase backdrop-blur-sm transition hover:bg-white hover:text-ink">{t.hero.explore}</a>
+            <Link href="/reservation" className="flex min-w-[188px] items-center justify-center rounded-full bg-red px-6 py-4 text-sm font-bold tracking-[.08em] text-white uppercase shadow-[0_10px_40px_rgba(173,47,30,.35)] transition-transform hover:scale-[1.03]">
+              {t.hero.reserve}
+            </Link>
+            <a href="/House-Noodles-Menu.pdf" className="flex min-w-[188px] items-center justify-center rounded-full border border-white/35 bg-white/5 px-6 py-4 text-sm font-bold tracking-[.08em] text-white uppercase backdrop-blur-sm transition hover:bg-white hover:text-ink">{t.hero.explore}</a>
           </div>
         </motion.div>
       </div>

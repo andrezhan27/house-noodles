@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
@@ -9,6 +10,7 @@ import { useLanguage } from "./LanguageProvider";
 
 export function Navbar() {
   const { language, setLanguage, t } = useLanguage();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const links = [
@@ -16,6 +18,7 @@ export function Navbar() {
     [t.nav.space, "space"],
     [t.nav.contact, "contact"],
   ];
+  const sectionHref = (id: string) => pathname === "/" ? `#${id}` : `/#${id}`;
 
   useEffect(() => {
     const sections = ["food", "space", "contact"]
@@ -39,16 +42,16 @@ export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-paper/95 text-ink shadow-[0_1px_0_rgba(22,19,15,.04)] backdrop-blur-xl">
       <nav className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-5 md:px-10 lg:px-16">
-        <a href="#top" aria-label="House Noodles home" className="flex items-center gap-2.5">
+        <Link href={sectionHref("top")} aria-label="House Noodles home" className="flex items-center gap-2.5">
           <Image src="/images/logo.webp" alt="" width={42} height={42} className="size-10 rounded-full" priority />
           <span className="hidden text-[13px] font-semibold tracking-[.18em] uppercase sm:block">House Noodles</span>
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-8 text-sm font-semibold md:flex">
           {links.map(([label, id]) => (
-            <a key={id} href={`#${id}`} aria-current={activeSection === id ? "location" : undefined} className={`relative py-6 transition-colors after:absolute after:inset-x-0 after:bottom-[17px] after:h-0.5 after:origin-left after:bg-red after:transition-transform ${activeSection === id ? "text-red after:scale-x-100" : "text-ink/68 after:scale-x-0 hover:text-ink"}`}>
+            <Link key={id} href={sectionHref(id)} aria-current={activeSection === id ? "location" : undefined} className={`relative py-6 transition-colors after:absolute after:inset-x-0 after:bottom-[17px] after:h-0.5 after:origin-left after:bg-red after:transition-transform ${activeSection === id ? "text-red after:scale-x-100" : "text-ink/68 after:scale-x-0 hover:text-ink"}`}>
               {label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -71,7 +74,7 @@ export function Navbar() {
       {open && (
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="border-t border-ink/8 bg-paper px-5 py-5 shadow-xl md:hidden">
           <div className="mx-auto flex max-w-[1440px] flex-col gap-1">
-            {links.map(([label, id]) => <a key={id} href={`#${id}`} onClick={() => setOpen(false)} className={`rounded-xl px-3 py-3 text-lg ${activeSection === id ? "bg-red/8 text-red" : ""}`}>{label}</a>)}
+            {links.map(([label, id]) => <Link key={id} href={sectionHref(id)} onClick={() => setOpen(false)} className={`rounded-xl px-3 py-3 text-lg ${activeSection === id ? "bg-red/8 text-red" : ""}`}>{label}</Link>)}
             <Link href="/reservation" onClick={() => setOpen(false)} className="mt-2 rounded-full bg-red px-5 py-3 text-center text-sm font-bold tracking-wider text-white uppercase">{t.nav.reserve}</Link>
           </div>
         </motion.div>
