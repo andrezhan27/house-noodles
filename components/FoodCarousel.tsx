@@ -7,7 +7,10 @@ import { useRef } from "react";
 import { useLanguage } from "./LanguageProvider";
 import { Reveal } from "./Reveal";
 
-const photos = Array.from({ length: 8 }, (_, index) => ({ src: `/images/food-${index + 1}.webp`, alt: `House Noodles dish ${index + 1}` }));
+const photos = Array.from({ length: 8 }, (_, index) => ({
+  src: `/images/food-${index + 1}.webp${index < 4 ? "?v=20260831" : ""}`,
+  alt: `House Noodles dish ${index + 1}`,
+}));
 
 export function FoodCarousel() {
   const { t } = useLanguage();
@@ -33,7 +36,7 @@ export function FoodCarousel() {
           <div className="md:pb-2">
             <p className="max-w-xl text-base leading-relaxed text-ink/65 md:ml-auto md:text-lg">{t.food.text}</p>
             <div className="mt-6 flex flex-wrap items-center gap-4 md:justify-end">
-              <a href="/House-Noodles-Menu.pdf" target="_blank" rel="noreferrer" className="flex min-w-[184px] items-center justify-center gap-2 rounded-full bg-red px-5 py-3.5 text-xs font-bold tracking-[.1em] text-white uppercase transition-transform hover:scale-[1.03]"><FileText size={16} />{t.food.pdf}</a>
+              <a href="/House Noodles Menu.pdf" target="_blank" rel="noreferrer" className="flex min-w-[184px] items-center justify-center gap-2 rounded-full bg-red px-5 py-3.5 text-xs font-bold tracking-[.1em] text-white uppercase transition-transform hover:scale-[1.03]"><FileText size={16} />{t.food.pdf}</a>
             </div>
           </div>
         </Reveal>

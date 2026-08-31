@@ -6,6 +6,13 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
+    localPatterns: [
+      { pathname: "/images/**", search: "" },
+      { pathname: "/images/food-1.webp", search: "?v=20260831" },
+      { pathname: "/images/food-2.webp", search: "?v=20260831" },
+      { pathname: "/images/food-3.webp", search: "?v=20260831" },
+      { pathname: "/images/food-4.webp", search: "?v=20260831" },
+    ],
   },
 };
 
