@@ -13,7 +13,7 @@
     "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json"
   },
   "dependencies": {
-    "@andrezhan27/intelis-restaurant-ui": "^0.1.2",
+    "@andrezhan27/intelis-restaurant-ui": "^0.2.1",
     "@tailwindcss/postcss": "^4.1.0",
     "@vercel/analytics": "^2.0.1",
     "@vinext/cloudflare": "^1.0.0-beta.6",

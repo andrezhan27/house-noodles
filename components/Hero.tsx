@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import { motion } from "motion/react";
+import { menuUrl } from "@/lib/menu";
 import { useLanguage } from "./LanguageProvider";
 
 export function Hero() {
@@ -24,7 +25,9 @@ export function Hero() {
             <Link href="/reservation" className="flex min-w-[188px] items-center justify-center rounded-full bg-red px-6 py-4 text-sm font-bold tracking-[.08em] text-white uppercase shadow-[0_10px_40px_rgba(173,47,30,.35)] transition-transform hover:scale-[1.03]">
               {t.hero.reserve}
             </Link>
-            <a href="/House-Noodles-Menu.pdf" className="flex min-w-[188px] items-center justify-center rounded-full border border-white/35 bg-white/5 px-6 py-4 text-sm font-bold tracking-[.08em] text-white uppercase backdrop-blur-sm transition hover:bg-white hover:text-ink">{t.hero.explore}</a>
+            {menuUrl ? (
+              <a href={menuUrl} className="flex min-w-[188px] items-center justify-center rounded-full border border-white/35 bg-white/5 px-6 py-4 text-sm font-bold tracking-[.08em] text-white uppercase backdrop-blur-sm transition hover:bg-white hover:text-ink">{t.hero.explore}</a>
+            ) : null}
           </div>
         </motion.div>
       </div>
