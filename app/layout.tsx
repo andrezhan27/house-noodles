@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { PromotionBanner } from "@andrezhan27/intelis-restaurant-ui";
 import { Analytics } from "@vercel/analytics/next";
+import { restaurantInfo } from "@/lib/restaurantInfo";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
@@ -32,6 +34,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="pt">
       <body>
+        <PromotionBanner
+          className="site-promotion-banner"
+          restaurantId={restaurantInfo.databaseId}
+        />
         {children}
         <Analytics />
       </body>

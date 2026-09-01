@@ -25,7 +25,10 @@ export function Contact() {
                 <a href={directionsUrl} target="_blank" rel="noreferrer" className="group inline-flex items-start gap-1 leading-relaxed transition-colors hover:text-red">Av. das Forças Armadas 34A<br />1600-082 Lisboa<ArrowUpRight size={14} className="mt-1 shrink-0" /></a>
               </ContactItem>
               <ContactItem icon={<Phone size={19} />} label={t.contact.phone}>
-                <a href="tel:+351217970485" className="text-base font-semibold transition-colors hover:text-red">21 797 0485</a>
+                <div className="flex flex-col items-start gap-1">
+                  <a href="tel:+351217970485" className="text-base font-semibold transition-colors hover:text-red">21 797 0485</a>
+                  <a href="tel:+351928358409" className="text-base font-semibold transition-colors hover:text-red">928 358 409</a>
+                </div>
               </ContactItem>
               <ContactItem icon={<Clock3 size={19} />} label={t.contact.hours}>
                 <div className="grid max-w-md gap-3 text-sm sm:grid-cols-2">

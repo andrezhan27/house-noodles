@@ -17,6 +17,10 @@
   --blue: #123e52;
   --gold: #bd7a2a;
   --cream: #fff9ed;
+  --promotion-banner-bg: #16130f;
+  --promotion-banner-text: #fff9ed;
+  --promotion-banner-link: #bd7a2a;
+  --promotion-banner-border: #ad2f1e;
   --font-sans: "Avenir Next", Avenir, "Helvetica Neue", Arial, sans-serif;
   --font-display: Iowan Old Style, "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
 }
@@ -33,6 +37,51 @@ body {
 button, a { -webkit-tap-highlight-color: transparent; }
 a { text-decoration: none; }
 ::selection { background: var(--red); color: var(--cream); }
+
+body > .site-promotion-banner {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  width: 100%;
+  height: 56px;
+  max-width: 100vw;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  font-size: clamp(.75rem, 1.5vw, .9rem);
+}
+
+.site-promotion-banner [aria-live] {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.site-promotion-banner [aria-live] > div {
+  min-width: 0;
+  flex-wrap: nowrap;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.site-promotion-banner [aria-live] span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.site-promotion-banner [aria-live] a {
+  flex: 0 0 auto;
+  max-width: min(42%, 14rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body:has(> .site-promotion-banner) > header {
+  top: 56px;
+}
 
 .display { font-family: var(--font-display); }
 .section-label {
@@ -66,5 +115,23 @@ section[id] { scroll-margin-top: 76px; }
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 36rem) {
+  body > .site-promotion-banner {
+    flex-wrap: nowrap;
+    padding-inline: .75rem;
+    font-size: clamp(.68rem, 2.8vw, .8rem);
+  }
+
+  .site-promotion-banner [aria-live] {
+    flex: 1 1 auto;
+    order: initial;
+  }
+
+  .site-promotion-banner [aria-live] > div {
+    justify-content: center;
+    text-align: center;
   }
 }
