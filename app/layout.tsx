@@ -4,6 +4,10 @@ import { Analytics } from "@vercel/analytics/next";
 import { restaurantInfo } from "@/lib/restaurantInfo";
 import "./globals.css";
 
+// The live promotion banner intentionally performs an uncached Supabase request.
+// Declare the shared layout dynamic before Next.js attempts static prerendering.
+export const dynamic = "force-dynamic";
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 
 if (!siteUrl) {
