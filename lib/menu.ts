@@ -1,6 +1,7 @@
 const configuredMenuUrl = process.env.NEXT_PUBLIC_MENU_URL?.trim();
+export const menuPath = "/House-Noodles-Menu.pdf";
 
-function getMenuUrl() {
+export function getMenuDestination() {
   if (!configuredMenuUrl) return null;
 
   try {
@@ -13,4 +14,4 @@ function getMenuUrl() {
   }
 }
 
-export const menuUrl = getMenuUrl();
+export const menuUrl = getMenuDestination() ? menuPath : null;
